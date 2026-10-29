@@ -12,7 +12,7 @@ from hn_engine.items import _default_client
 logger = logging.getLogger(__name__)
 
 
-class StoryKind(enum.StrEnum):
+class StoryKind(str, enum.Enum):
     """Available story list kinds."""
 
     TOP = "top"

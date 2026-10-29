@@ -45,13 +45,13 @@ def sanitize_html(raw: str | None) -> str:
         return ""
 
     if _HAS_BLEACH:
-        return bleach.clean(
+        return str(bleach.clean(
             raw,
             tags=_ALLOWED_TAGS,
             attributes=_ALLOWED_ATTRIBUTES,
             protocols=_ALLOWED_PROTOCOLS,
             strip=True,
-        )
+        ))
 
     # Fallback: strip all tags with a simple regex
     return re.sub(r"<[^>]+>", "", raw)

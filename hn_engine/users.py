@@ -45,4 +45,4 @@ def get_user(
         logger.debug("User %r returned null (does not exist)", username)
         return None
 
-    return data
+    return dict(data)

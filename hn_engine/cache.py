@@ -71,7 +71,7 @@ class HNCache:
         self._misses = 0
 
     @property
-    def stats(self) -> dict[str, int]:
+    def stats(self) -> dict[str, int | float]:
         """Return cache statistics."""
         total = self._hits + self._misses
         return {
@@ -81,13 +81,13 @@ class HNCache:
             "hit_rate": round(self._hits / total, 4) if total > 0 else 0.0,
         }
 
-    def cached(self, ttl: float | None = None) -> Callable:
+    def cached(self, ttl: float | None = None) -> Callable[..., Any]:
         """Decorator that caches a function's return value.
 
         Args:
             ttl: Optional override TTL for this specific function.
         """
-        def decorator(func: Callable) -> Callable:
+        def decorator(func: Callable[..., Any]) -> Callable[..., Any]:
             def wrapper(*args: Any, **kwargs: Any) -> Any:
                 # Build a cache key from function name + args
                 key_parts = [func.__qualname__]

@@ -156,5 +156,10 @@ class HNClient:
     def __enter__(self) -> HNClient:
         return self
 
-    def __exit__(self, exc_type, exc_val, exc_tb) -> None:  # noqa: ANN001
+    def __exit__(
+        self,
+        exc_type: type[BaseException] | None,
+        exc_val: BaseException | None,
+        exc_tb: Any,
+    ) -> None:
         self.close()
