@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 280" width="800" height="280" role="img" aria-label="Caching strategy diagram">
+  <defs>
+    <marker id="ar3" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#64748B"/>
+    </marker>
+    <linearGradient id="bx" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1E293B"/>
+      <stop offset="100%" stop-color="#0F1A2E"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="280" fill="#0B1220" rx="10"/>
+
+  <text x="400" y="32" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif"
+        font-size="16" font-weight="600" text-anchor="middle" fill="#F8FAFC">Caching Strategy</text>
+
+  <!-- Request in -->
+  <rect x="60" y="70" width="130" height="50" rx="8" fill="url(#bx)" stroke="#A855F7" stroke-width="1.5"/>
+  <text x="125" y="92" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        font-size="11" text-anchor="middle" fill="#C084FC">get_item(8863)</text>
+  <text x="125" y="108" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        font-size="9" text-anchor="middle" fill="#94A3B8">Request incoming</text>
+
+  <line x1="190" y1="95" x2="240" y2="95" stroke="#64748B" stroke-width="1.4" marker-end="url(#ar3)"/>
+
+  <!-- Cache check -->
+  <rect x="244" y="56" width="160" height="76" rx="8" fill="url(#bx)" stroke="#F59E0B" stroke-width="1.5"/>
+  <text x="324" y="80" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        font-size="11" text-anchor="middle" fill="#FBBF24">HNCache.check()</text>
+  <text x="324" y="98" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        font-size="9" text-anchor="middle" fill="#94A3B8">TTLCache (optional)</text>
+  <text x="324" y="112" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        font-size="9" text-anchor="middle" fill="#94A3B8">Key: func_name|args|kwargs</text>
+
+  <!-- Hit path -->
+  <line x1="324" y1="56" x2="324" y2="30" stroke="#10B981" stroke-width="1.4" marker-end="url(#ar3)"/>
+  <text x="340" y="48" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        font-size="10" fill="#34D399">Cache HIT → return cached</text>
+
+  <!-- Miss path -->
+  <line x1="404" y1="94" x2="460" y2="94" stroke="#64748B" stroke-width="1.4" marker-end="url(#ar3)"/>
+
+  <!-- HN API -->
+  <rect x="464" y="70" width="130" height="50" rx="8" fill="url(#bx)" stroke="#FF6600" stroke-width="1.5"/>
+  <text x="529" y="92" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        font-size="11" text-anchor="middle" fill="#FF6600">HN API</text>
+  <text x="529" y="108" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        font-size="9" text-anchor="middle" fill="#94A3B8">Network request</text>
+
+  <line x1="594" y1="95" x2="650" y2="95" stroke="#64748B" stroke-width="1.4" marker-end="url(#ar3)"/>
+
+  <!-- Store & return -->
+  <rect x="654" y="56" width="140" height="76" rx="8" fill="url(#bx)" stroke="#3B82F6" stroke-width="1.5"/>
+  <text x="724" y="80" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        font-size="11" text-anchor="middle" fill="#38BDF8">Store + Return</text>
+  <text x="724" y="98" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        font-size="9" text-anchor="middle" fill="#94A3B8">Cache the response</text>
+  <text x="724" y="112" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        font-size="9" text-anchor="middle" fill="#94A3B8">Return to caller</text>
+
+  <!-- TTL table -->
+  <rect x="60" y="160" width="240" height="100" rx="8" fill="url(#bx)" stroke="#1E293B" stroke-width="1"/>
+  <text x="80" y="184" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        font-size="11" fill="#F8FAFC">Recommended TTLs</text>
+  <text x="80" y="204" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        font-size="10" fill="#94A3B8">Items .............. 5–10 min</text>
+  <text x="80" y="220" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        font-size="10" fill="#94A3B8">Story lists ........ 1–2 min</text>
+  <text x="80" y="236" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        font-size="10" fill="#94A3B8">updates.json ....... 30–60 s</text>
+  <text x="80" y="252" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        font-size="10" fill="#94A3B8">Users .............. 10–30 min</text>
+
+  <!-- Stats -->
+  <rect x="340" y="160" width="200" height="100" rx="8" fill="url(#bx)" stroke="#1E293B" stroke-width="1"/>
+  <text x="360" y="184" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        font-size="11" fill="#F8FAFC">Cache Stats</text>
+  <text x="360" y="204" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        font-size="10" fill="#94A3B8">hits, misses, total</text>
+  <text x="360" y="220" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        font-size="10" fill="#94A3B8">hit_rate (ratio)</text>
+  <text x="360" y="240" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        font-size="10" fill="#94A3B8">@cache.cached() decorator</text>
+
+  <!-- No-op fallback -->
+  <rect x="580" y="160" width="200" height="100" rx="8" fill="url(#bx)" stroke="#1E293B" stroke-width="1"/>
+  <text x="600" y="184" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        font-size="11" fill="#F8FAFC">Graceful Degradation</text>
+  <text x="600" y="204" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        font-size="10" fill="#94A3B8">No cachetools installed?</text>
+  <text x="600" y="220" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        font-size="10" fill="#94A3B8">→ HNCache becomes passthrough</text>
+  <text x="600" y="240" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        font-size="10" fill="#94A3B8">Zero breaking changes</text>
+</svg>
